@@ -42,8 +42,8 @@ func main() {
 
 	for i := 0; i < len(input.Items); i++ {
 		item := input.Items[i]
-		itemString := "// Error" + item.Name + " " + item.Desc + ".\n" +
-			"var Error" + item.Name + " = " + input.Struct + "{Code: " + strconv.FormatInt(int64(i+input.Start), 10) +
+		itemString := "// " + input.Prefix + item.Name + " " + item.Desc + ".\n" +
+			"var " + input.Prefix + item.Name + " = " + input.Struct + "{Code: " + strconv.FormatInt(int64(i+input.Start), 10) +
 			", Text: \"" + item.Text + "\"}\n\n"
 		_, err := output.WriteString(itemString)
 		exitf("cound not put an item into output file", err)

@@ -1,0 +1,13 @@
+# vendor
+vendor/
+
+# IDE
+.vscode
+.idea
+
+# tests
+/coverage.out
+
+# binary
+/errgen
+__debug_bin

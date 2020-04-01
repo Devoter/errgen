@@ -4,5 +4,6 @@ package main
 type Input struct {
 	Start   int     `yaml:"start"`
 	Package string  `yaml:"package"`
+	Struct  string  `yaml:"struct"`
 	Items   []*Item `yaml:"items"`
 }

@@ -35,16 +35,16 @@ func main() {
 	defer output.Close()
 
 	header := "// Do not change this file manually. This file was generated via errgen utility.\n" +
-		"package " + input.Package + "\n\n"
+		"package " + input.Package + "\n"
 
 	_, err = output.WriteString(header)
 	exitf("coult not put a header into output file", err)
 
 	for i := 0; i < len(input.Items); i++ {
 		item := input.Items[i]
-		itemString := "// " + input.Prefix + item.Name + " " + item.Desc + ".\n" +
+		itemString := "\n// " + input.Prefix + item.Name + " " + item.Desc + ".\n" +
 			"var " + input.Prefix + item.Name + " = " + input.Struct + "{Code: " + strconv.FormatInt(int64(i+input.Start), 10) +
-			", Text: \"" + item.Text + "\"}\n\n"
+			", Text: \"" + item.Text + "\"}\n"
 		_, err := output.WriteString(itemString)
 		exitf("cound not put an item into output file", err)
 	}

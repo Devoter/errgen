@@ -34,8 +34,8 @@ func main() {
 
 	defer output.Close()
 
-	header := "// Do not change this file manually. This file was generated via errgen utility.\n" +
-		"package " + input.Package + "\n"
+	header := "package " + input.Package + "\n\n" +
+		"// ATTENTION: Do not change this file manually. This file was generated via errgen utility.\n"
 
 	_, err = output.WriteString(header)
 	exitf("coult not put a header into output file", err)

@@ -34,8 +34,17 @@ func main() {
 
 	defer output.Close()
 
-	header := "package " + input.Package + "\n\n" +
-		"// ATTENTION: Do not change this file manually. This file was generated via errgen utility.\n"
+	header := "package " + input.Package + "\n\n"
+
+	if len(input.Imports) > 0 {
+		header += "import (\n"
+		for _, imp := range input.Imports {
+			header += "\t" + imp + "\n"
+		}
+		header += ")\n\n"
+	}
+
+	header += "// ATTENTION: Do not change this file manually. This file was generated via errgen utility.\n"
 
 	_, err = output.WriteString(header)
 	exitf("coult not put a header into output file", err)

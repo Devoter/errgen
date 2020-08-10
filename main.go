@@ -39,7 +39,7 @@ func main() {
 	if len(input.Imports) > 0 {
 		header += "import (\n"
 		for _, imp := range input.Imports {
-			header += "\t" + imp + "\n"
+			header += "\t\"" + imp + "\"\n"
 		}
 		header += ")\n\n"
 	}

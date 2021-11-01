@@ -3,9 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
-	"strconv"
 
 	"gopkg.in/yaml.v2"
 )
@@ -21,7 +19,7 @@ func main() {
 		os.Exit(2)
 	}
 
-	inputData, err := ioutil.ReadFile(*inputFilename)
+	inputData, err := os.ReadFile(*inputFilename)
 	exitf("could not read an input file", err)
 
 	input := &Input{}
@@ -51,9 +49,15 @@ func main() {
 
 	for i := 0; i < len(input.Items); i++ {
 		item := input.Items[i]
-		itemString := "\n// " + input.Prefix + item.Name + " " + item.Desc + ".\n" +
-			"var " + input.Prefix + item.Name + " = " + input.Struct + "{Code: " + strconv.FormatInt(int64(i+input.Start), 10) +
-			", Text: \"" + item.Text + "\"}\n"
+		var itemString string
+
+		if item.Desc != "" {
+			itemString = "\n// " + input.Prefix + item.Name + " " + item.Desc + ".\n"
+		}
+
+		itemString += "var " + input.Prefix + item.Name + " = " + input.Struct + "{Code: " + fmt.Sprintf("%d", i+input.Start) +
+			", Text: \"" + item.Text + "\", Group: " + fmt.Sprintf("%d", item.Group) + "}\n"
+
 		_, err := output.WriteString(itemString)
 		exitf("cound not put an item into output file", err)
 	}

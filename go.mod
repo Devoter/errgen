@@ -1,5 +1,5 @@
-module github.com/Devoter/errgen/v2
+module github.com/Devoter/errgen
 
-go 1.17
+go 1.14
 
 require gopkg.in/yaml.v2 v2.2.8

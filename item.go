@@ -5,6 +5,6 @@ type Item struct {
 	Name  string `yaml:"name"`
 	Code  int    `yaml:"-"`
 	Text  string `yaml:"text"`
-	Group uint8  `yaml:"group"`
+	Group string `yaml:"group,omitempty"`
 	Desc  string `yaml:"desc,omitempty"`
 }
